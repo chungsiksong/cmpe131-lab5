@@ -2,7 +2,10 @@
 const sqlite3 = require('sqlite3');
 const { open } = require('sqlite'); // Use 'open' from the sqlite package
 
-const DBSOURCE = "../../db.sqlite";
+const path = require('path'); // 1. Import the 'path' module
+
+// 2. Build the path relative to the current file's directory
+const DBSOURCE = path.join(__dirname, '../../db.sqlite');
 
 async function setupDatabase() {
     try {
