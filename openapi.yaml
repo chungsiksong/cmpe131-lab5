@@ -1,0 +1,106 @@
+openapi: 3.1.0
+info:
+  title: User API
+  contact: {}
+  version: '1.0'
+jsonSchemaDialect: https://json-schema.org/draft/2020-12/schema
+servers:
+- url: http://localhost:3000/api
+  variables: {}
+paths:
+  /:
+    get:
+      tags:
+      - Misc
+      summary: GET /users
+      operationId: GET/users
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    parameters: []
+  /user:
+    post:
+      tags:
+      - Misc
+      summary: POST /user
+      operationId: POST/user
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/POSTuserRequest'
+              - examples:
+                - name: Jane Doe
+                  email: '{{uniqueEmail}}'
+              contentMediaType: application/json
+            example:
+              name: Jane Doe
+              email: '{{uniqueEmail}}'
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    parameters: []
+  /user/:
+    patch:
+      tags:
+      - Misc
+      summary: PATCH /user/{id}
+      operationId: PATCH/user/{id}
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/PATCHuseridRequest'
+              - examples:
+                - name: Jane Smith
+              contentMediaType: application/json
+            example:
+              name: Jane Smith
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    parameters: []
+components:
+  schemas:
+    POSTuserRequest:
+      title: POSTuserRequest
+      required:
+      - name
+      - email
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+      examples:
+      - name: Jane Doe
+        email: '{{uniqueEmail}}'
+    PATCHuseridRequest:
+      title: PATCHuseridRequest
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+      examples:
+      - name: Jane Smith
+tags:
+- name: Misc
+  description: ''
